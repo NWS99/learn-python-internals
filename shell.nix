@@ -1,8 +1,8 @@
 { pkgs ? import <nixpkgs> {} }:
 let
   python-packages = ps: with ps; [
-      notebook
-      ipykernel
+      jupyter
+      ipython
       pip
   ];
   my-python = pkgs.python310.withPackages python-packages;
