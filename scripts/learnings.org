@@ -74,7 +74,7 @@ half_year += (Mark("german", 3))
 print(half_year)
 #+END_SRC
 
-** Learning Iterables"
+** Learning Iterables
 *** Size comparison
 
 #+BEGIN_SRC python
@@ -136,83 +136,84 @@ l_lst_exp = [(i for i in range(1, 10000000, 2))]
 l_tup_exp = tuple(i for i in range(1, 10000000, 2))
 
 print(f"""
-Large GenExp Array:{sys.getsizeof(l_arr_exp)}\n",
-Large GenExp List: {sys.getsizeof(l_lst_exp)}\n",
-Large GenExp Tuple: {sys.getsizeof(l_tup_exp)}\n",
+Large GenExp Array:{sys.getsizeof(l_arr_exp)}
+Large GenExp List: {sys.getsizeof(l_lst_exp)}
+Large GenExp Tuple: {sys.getsizeof(l_tup_exp)}
 """)
 #+END_SRC
 
 *** Unpacking
 **** Unpacking 1:1
 #+BEGIN_SRC python
-    "one, two = (123.0934, 21340.0435)\n",
-
-    "print({one})"
+one, two = (123.0934, 21340.0435)
+print({one})
 #+END_SRC
 
 **** Unpacking larger iterable than variable count"
 #+BEGIN_SRC python
-    "tuple = (1, 2, 3, 4, 5, 6, 7)\n",
-    "one, two, *others = tuple\n",
-    "\n",
-    "print(f\"one:\\t{one}\\ntwo:\\t{two}\\nothers:\\t{others}\\n\")\n",
-    "print(f\"Type from tuple:\\n\\t{type(tuple)}\\nType from others:\\n\\t{type(others)}\")"
+tuple = (1, 2, 3, 4, 5, 6, 7)
+one, two, *others = tuple
 
-    "print(*range(5))\n",
-    "\n",
-    "try:\n",
-    "    print(type(*range(5)))\n",
-    "except Exception as e:\n",
-    "    print(e)"
+print(f"one: \t {one} \n two: \t {two} \n others: \t {others} \n")
+print(f"Type from tuple: \n \t {type(tuple)} \n Type from others: \n \t {type(others)} ")
 
-    "print([*range(8)])\n",
-    "\n",
-    "print(type([*range(80)]))"
+print(*range(5))
+
+try:
+    print(type(*range(5)))
+except Exception as e:
+    print(e)
+
+print([*range(8)])
+
+print(type([*range(80)]))
 #+END_SRC
 
 **** Pattern matching
 #+BEGIN_SRC python
 items = [
-    ["pat", 2, 'tesqwert', 'casdfase', (3, 4, 5, 6)]
-    ["nev",3, 'tesqwert', 'cabasse', (3.3, 4.5, 5.2, 6.5, 9.1)]
-    ["pat", 4, 'tewqerst', 'cawegasse', (3.44, 4.33, 5, 6, 6, 6)]
-    ["nev",5, 'teqwerst', 'caasdasdse', (3.23, 4, 5, 6)]
-    ["pat", 6, 'teswert', 'casasbdasde', (3, 4, 5, 6)]
-    ["pat", 23, 'tadsfest', 'casdbase', (3, 4, 5, 6)]
-    ["nev", 22, 'teswert', 'casasdbdsabe', (3.3, 4.6, 5.3, 6.6)]
-    ["never", 'tasdfest', 'caswere', (3.0, 4.2, 5.6, 6.8)]
+    ["pat", 2, 'tesqwert', 'casdfase', (3, 4, 5, 6)],
+    ["nev",3, 'tesqwert', 'cabasse', (3.3, 4.5, 5.2, 6.5, 9.1)],
+    ["pat", 4, 'tewqerst', 'cawegasse', (3.44, 4.33, 5, 6, 6, 6)],
+    ["nev",5, 'teqwerst', 'caasdasdse', (3.23, 4, 5, 6)],
+    ["pat", 6, 'teswert', 'casasbdasde', (3, 4, 5, 6)],
+    ["pat", 23, 'tadsfest', 'casdbase', (3, 4, 5, 6)],
+    ["nev", 22, 'teswert', 'casasdbdsabe', (3.3, 4.6, 5.3, 6.6)],
+    ["never", 'tasdfest', 'caswere', (3.0, 4.2, 5.6, 6.8)],
+]
 
-
-for item in items:\n",
-    match item:\n",
-        case [\"pat\", int(x), _, _, (v1, v2, v3, v4)]:\n",
-            print(item)\n",
-        case [\"nev\", _, str(t1), str(t2), *_]:\n",
-            print(f\"nev: {t1} \\t \\t {t2}\")\n",
-        case [*_, t as tail]:\n",
-            print(tail)"
+for item in items:
+    match item:
+        case ["pat", int(x), _, _, (v1, v2, v3, v4)]:
+            print(item)
+        case ["nev", _, str(t1), str(t2), *_]:
+            print(f"nev: {t1} \t \t {t2}")
+        case [*_, t as tail]:
+            print(tail)
 #+END_SRC
-**** double loop in generator / comprehension"
-    "lisT = [t for t in range(10) for i in range(5)]\n",
-    "print(lisT)"
-**** Advanced silcing"
-    "word = \"pineapple\"\n",
-    "\n",
-    "# non overlapping ranges\n",
-    "print(word[:4], word[4:])\n",
-    "\n",
-    "# diffenent steps\n",
-    "\n",
-    "print(word[::2])\n",
-    "\n",
-    "# easy reverting\n",
-    "print(word[::-1])\n"
+**** double loop in generator/comprehension
+#+BEGIN_SRC python
+lisT = [t for t in range(10) for i in range(5)]
+print(lisT)
+#+END_SRC
+**** Advanced silcing
+#+BEGIN_SRC python
+word = "pineapple"
 
-    "multi = [[1, 2, 3, 4, 5],[1, 2, 3, 4, 5]]\n",
-    "\n",
-    "print(multi[1][0])\n",
-    "print(multi[0][1])\n",
-    "\n",
-    "print(multi[0][1:2])"
-   ]
-  }
+# non overlapping ranges
+print(word[:4], word[4:])
+
+# diffenent steps
+
+print(word[::2])
+
+# easy reverting
+print(word[::-1])
+
+multi = [[1, 2, 3, 4, 5],[1, 2, 3, 4, 5]]
+
+print(multi[1][0])
+print(multi[0][1])
+
+print(multi[0][1:2])
+#+END_SRC
