@@ -1,3 +1,4 @@
+# [[file:learnings.org::*Data classes][Data classes:1]]
 """
 In this module I try to implement basic classes with heavy use of dunder methods.
 The Goal is to:
@@ -70,3 +71,4 @@ half_year += (Mark('math', 1))
 half_year += (Mark("german", 3))
 
 print(half_year)
+# Data classes:1 ends here

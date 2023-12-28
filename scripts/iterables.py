@@ -1,82 +1,4 @@
-** Data classes
-#+BEGIN_SRC python :tangle ./dunder_methods.py :comments link
-"""
-In this module I try to implement basic classes with heavy use of dunder methods.
-The Goal is to:
-- understand the basic behavior
-- get to know the build in Data Models
-
-Reference: https://docs.python.org/3/reference/datamodel.html
-"""
-
-from typing import List
-
-
-class Mark():
-
-    def __init__(self, subject: str, value: int):
-
-        self.subject = subject
-        self.value = value
-
-    def __repr__(self):
-
-        name_mapping = {
-            1: 'A',
-            2: 'B',
-            3: 'C',
-            4: 'D',
-            5: 'E',
-            6: 'F'
-        }
-
-        return f"{self.subject}: {name_mapping[self.value]}"
-
-
-class Mark_Report():
-
-    def __init__(self):
-
-        self.grades: List[Mark] = []
-
-    def __getitem__(self, position):
-
-        return self.grades[position]
-
-    def __len__(self):
-
-        return len(self.grades)
-
-    def __iadd__(self, element: Mark):
-
-        self.grades.append(element)
-        return self
-
-
-    #TODO: implement further __methods__
-    
-    # def __get__(self, instance, owner=None):
-    # def __set__(self, instnace, value)
-    # def __new__(cls)
-    
-    # TODO: try to implement a singleton behavior and to have a proper mark report behavior and output
-
-    def __repr__(self):
-
-        return "\n".join(f"{mark.subject}: {mark.value}"
-                         for mark in self.grades)
-
-
-half_year = Mark_Report()
-half_year += (Mark('math', 1))
-half_year += (Mark("german", 3))
-
-print(half_year)
-#+END_SRC
-
-** Learning Iterables
-*** Size comparison
-#+BEGIN_SRC python :tangle ./iterables.py :comments link
+# [[file:learnings.org::*Size comparison][Size comparison:1]]
 import sys
 import array
 
@@ -139,17 +61,14 @@ Large GenExp Array:{sys.getsizeof(l_arr_exp)}
 Large GenExp List: {sys.getsizeof(l_lst_exp)}
 Large GenExp Tuple: {sys.getsizeof(l_tup_exp)}
 """)
-#+END_SRC
+# Size comparison:1 ends here
 
-*** Unpacking
-**** Unpacking 1:1
-#+BEGIN_SRC python :tangle ./iterables.py :comments link
+# [[file:learnings.org::*Unpacking 1:1][Unpacking 1:1:1]]
 one, two = (123.0934, 21340.0435)
 print({one})
-#+END_SRC
+# Unpacking 1:1:1 ends here
 
-**** Unpacking larger iterable than variable count"
-#+BEGIN_SRC python :tangle ./iterables.py :comments link
+# [[file:learnings.org::*Unpacking larger iterable than variable count"][Unpacking larger iterable than variable count":1]]
 tuple = (1, 2, 3, 4, 5, 6, 7)
 one, two, *others = tuple
 
@@ -166,10 +85,9 @@ except Exception as e:
 print([*range(8)])
 
 print(type([*range(80)]))
-#+END_SRC
+# Unpacking larger iterable than variable count":1 ends here
 
-**** Pattern matching
-#+BEGIN_SRC python :tangle ./iterables.py :comments link
+# [[file:learnings.org::*Pattern matching][Pattern matching:1]]
 items = [
     ["pat", 2, 'tesqwert', 'casdfase', (3, 4, 5, 6)],
     ["nev",3, 'tesqwert', 'cabasse', (3.3, 4.5, 5.2, 6.5, 9.1)],
@@ -189,14 +107,14 @@ for item in items:
             print(f"nev: {t1} \t \t {t2}")
         case [*_, t as tail]:
             print(tail)
-#+END_SRC
-**** double loop in generator/comprehension
-#+BEGIN_SRC python :tangle ./iterables.py :comments link
+# Pattern matching:1 ends here
+
+# [[file:learnings.org::*double loop in generator/comprehension][double loop in generator/comprehension:1]]
 lisT = [t for t in range(10) for i in range(5)]
 print(lisT)
-#+END_SRC
-**** Advanced silcing
-#+BEGIN_SRC python :tangle ./iterables.py :comments link
+# double loop in generator/comprehension:1 ends here
+
+# [[file:learnings.org::*Advanced silcing][Advanced silcing:1]]
 word = "pineapple"
 
 # non overlapping ranges
@@ -215,4 +133,4 @@ print(multi[1][0])
 print(multi[0][1])
 
 print(multi[0][1:2])
-#+END_SRC
+# Advanced silcing:1 ends here
