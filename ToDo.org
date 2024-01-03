@@ -1,1 +1,7 @@
 #+title To Do
+
+* general
+** TODO find proper learning material
+* specific
+** TODO fix ~shell-nix~
+** TODO structure project properly
